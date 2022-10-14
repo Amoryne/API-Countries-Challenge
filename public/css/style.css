@@ -1,0 +1,29 @@
+body {
+  margin: 0 auto;
+  max-width: 1444px;
+  border: 1px solid red;
+}
+
+.container {
+  border: 1px solid blue;
+  display: flex;
+  flex-wrap: wrap;
+  flex-basis: auto;
+  flex-shrink: 1;
+  flex-grow: 1;
+  justify-content: space-around;
+}
+.container .country {
+  background-color: rgb(128, 128, 128);
+  margin-bottom: 10px;
+  border: 1px solid black;
+}
+.container .country img {
+  width: 320px;
+  height: 230px;
+}
+.container .text-country {
+  padding: 10px;
+}
+
+/*# sourceMappingURL=style.css.map */
