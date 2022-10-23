@@ -8,6 +8,7 @@
 
 
 let getRegion = document.getElementById('region-select');
+
 let getInput = document.getElementById('search')
 let getBtnSearch = document.getElementById('btn-search')
 let inputValue = ""
@@ -21,7 +22,7 @@ getBtnSearch.addEventListener('click',(e)=>{
   getInput.value = ""
 })
 
-
+console.log(getInput[0])
 
  
 
@@ -34,6 +35,7 @@ async function getData() {
    if(getInput.value != ""){
     var url = 'https://restcountries.com/v3.1/name/' + getInput.value
   }
+ 
  
  
   try{
@@ -51,18 +53,28 @@ async function getCountries(){
  
   countries.forEach(country => {
 
-      let htmlDOM = `<div class ="country">
-      <img src="${country.flags.png}">
+      let htmlDOM = `<a href="details.html?${country.name.common}"> <div id="${country.name.common}"  class ="country">
+      <img id="image" src="${country.flags.png}">
       <div class="text-country">
       <h2>${country.name.common} </h2>
       <p>Population: ${country.population}</p>
       <p>Region: ${country.region}</p>
       <p>Capital: ${country.capital}</p>
-      </div></div>`;
+      </div></div></a>`;
       html += htmlDOM;
+    
+
   });
+
+  
   let container = document.querySelector('.container');
-  container.innerHTML = html;
+  container.innerHTML = html; 
+
+
+
+
+
+  
 } 
 
 getCountries()

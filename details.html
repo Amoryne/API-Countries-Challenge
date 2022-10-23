@@ -1,0 +1,132 @@
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <script src="https://cdn.jsdelivr.net/npm/luxon@3.0.4/build/global/luxon.min.js"></script>
+        <title>Document</title>
+    </head>
+    <body>
+
+        <div class="container"></div>
+
+
+
+    <script>
+       
+        var queryString = location.search.substring(1);
+        
+        console.log(queryString)
+
+
+        async function getData() {
+
+    var url = 'https://restcountries.com/v3.1/name/' + queryString
+  
+ 
+ 
+ 
+  try{
+      let response = await fetch(url);
+      return await response.json();
+  } catch (error){
+    console.log(error)
+  }
+}
+ 
+async function getCountries(){
+  
+  let countries = await getData();
+  let html = '';
+ 
+  countries.map(function(countries)  {
+
+let languageGet = []
+for(let key in countries.languages) {
+   // languageGet.push(countries.languages[key])
+   languageGet.push(countries.languages[key])
+}
+let CurrencieGet = []
+for(let keys in countries.currencies) {
+   // languageGet.push(countries.languages[key])
+   CurrencieGet.push(countries.currencies[keys])
+   console.log(CurrencieGet[0].name)
+}
+
+
+// console.log(nowDate)
+//  const moonLanding = new Date(nowDate, utcHOUR);
+//  console.log(moonLanding) 
+
+// const date1 = new Date('December 31, 1975, 23:15:30 GMT+01:00');
+// const date2 = new Date('December 31, 1975, 23:15:30 + utcHour');
+
+// console.log(date1.getUTCHours());
+// expected output: 12
+ var DateTime = luxon.DateTime;
+
+//let DateNow=DateTime.local().offset / 60;
+// utcHOUR = 'UTC+0'+DateNow+':00'
+
+let utcHOUR = countries.timezones[0];
+ if(utcHOUR === 'UTC+01:00'){
+           
+            utcHOUR = 'UTC+02:00'
+        }
+console.log(utcHOUR)
+        let DateTest=DateTime.local().setZone(utcHOUR).toLocaleString(DateTime.DATETIME_MED);
+       let test =  parseFloat(utcHOUR.substring(4))
+       console.log(test)
+        
+      
+
+      let htmlDOM = `<div id="${countries.name.common}"  class ="countries">
+      <img id="image" src="${countries.flags.png}">
+      <div class="text-countries">
+      <h2>${countries.name.common} </h2>
+      <h3>${countries.name.official} </h3> 
+       <p>In ${countries.name.common}  it's  ${DateTest}</p>
+      <p>Population: ${countries.population}</p>
+      <p>Region: ${countries.region}</p>
+      <p>Capital: ${countries.capital}</p>
+      <p>Sub region: ${countries.subregion}</p>
+      <p>Time zone: ${countries.timezones}</p>
+    
+      <p>Currencies: ${CurrencieGet[0].name}</p>
+      <p>Languages: ${languageGet}</p>
+      </div></div>`;
+      html += htmlDOM;
+      
+    console.log(countries)
+
+  });
+
+  
+  let container = document.querySelector('.container');
+  container.innerHTML = html; 
+
+  
+} 
+
+getCountries()
+
+
+// fetch('https://restcountries.com/v3.1/name/' + queryString)
+//     .then((response) => {
+//         let htmlDOM = `<a href="details.html?${country.name.common}"> <div id="${country.name.common}"  class ="country">
+//       <img id="image" src="${response.flags.png}">
+//       <div class="text-country">
+//       <h2>${country.name.common} </h2>
+//       <p>Population: ${country.population}</p>
+//       <p>Region: ${country.region}</p>
+//       <p>Capital: ${country.capital}</p>
+//       </div></div></a>`;
+//       html += htmlDOM;
+//       let container = document.querySelector('.container');
+//   container.innerHTML = html; 
+//     })
+
+    </script>  
+    </body>
+    </html>
