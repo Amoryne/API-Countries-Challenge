@@ -24,7 +24,7 @@ getBtnSearch.addEventListener('click',(e)=>{
 
 console.log(getInput[0])
 
- 
+
 
 async function getData() {
    if (getRegion.value === "" && getInput.value === ""){
@@ -40,7 +40,8 @@ async function getData() {
  
   try{
       let response = await fetch(url);
-      return await response.json();
+      return await response.json(); 
+         
   } catch (error){
     console.log(error)
   }
@@ -79,6 +80,17 @@ async function getCountries(){
 
 getCountries()
 
+let array = ["a","b","c"];
+// array.forEach(number => {
+//   console.log(number)
+//  })
+
+//  for(let x in array){
+//   console.log(x)
+//  }
+for(let x = 0 ; x < array.length ; x++){
+  console.log(array[x])
+}
 
 
 

@@ -1,7 +1,12 @@
 body {
   margin: 0 auto;
-  max-width: 1444px;
-  border: 1px solid red;
+  max-width: 375px;
+}
+
+h1 {
+  font-size: 14px;
+  color: rgb(21, 21, 21);
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .container {
@@ -24,6 +29,12 @@ body {
 }
 .container .text-country {
   padding: 10px;
+}
+
+@media screen and (min-width: 375px) {
+  body {
+    max-width: 1444px;
+  }
 }
 
 /*# sourceMappingURL=style.css.map */
